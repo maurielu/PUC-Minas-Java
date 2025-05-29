@@ -1,30 +1,30 @@
 package br.com.aulas.projeto.controller;
 
 import br.com.aulas.projeto.model.Aluno;
-import org.springframework.http.HttpStatus;
+import br.com.aulas.projeto.service.PublicService;
+import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @RestController
 @RequestMapping(value = "/public", produces = MediaType.APPLICATION_JSON_VALUE)
 public class PublicController {
-    List<Aluno> alunoList = new ArrayList<>();
+    private PublicService publicService;
+
+    public PublicController(PublicService publicService) {
+        this.publicService = publicService;
+    }
 
     // Receber um objeto JSON [Objeto da Classe Aluno (id, nome)] como parametro de entrada no POST
     // Tratar esse objeto json para atributos nulos, caso tenham atributos nulos retornar o erro adequado
     // Caso tudo esteja ok, retornem um status de CRIADO
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity insert(@RequestBody @Validated Aluno aluno) {
-        alunoList.add(aluno);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity insert(@RequestBody @Valid Aluno aluno) {
+        return publicService.insert(aluno);
     }
 
 
