@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PublicService {
+public class AlunoService {
     List<Aluno> alunoList = new ArrayList<>();
 
     public ResponseEntity insert(Aluno aluno) {

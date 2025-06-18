@@ -1,7 +1,7 @@
 package br.com.aulas.projeto.controller;
 
 import br.com.aulas.projeto.model.Aluno;
-import br.com.aulas.projeto.service.PublicService;
+import br.com.aulas.projeto.service.AlunoService;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/public", produces = MediaType.APPLICATION_JSON_VALUE)
-public class PublicController {
-    private PublicService publicService;
+@RequestMapping(value = "/aluno", produces = MediaType.APPLICATION_JSON_VALUE)
+public class AlunoController {
+    private AlunoService alunoService;
 
-    public PublicController(PublicService publicService) {
-        this.publicService = publicService;
+    public AlunoController(AlunoService alunoService) {
+        this.alunoService = alunoService;
     }
 
     // Receber um objeto JSON [Objeto da Classe Aluno (id, nome)] como parametro de entrada no POST
@@ -24,7 +24,7 @@ public class PublicController {
     // Caso tudo esteja ok, retornem um status de CRIADO
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity insert(@RequestBody @Valid Aluno aluno) {
-        return publicService.insert(aluno);
+        return alunoService.insert(aluno);
     }
 
 
