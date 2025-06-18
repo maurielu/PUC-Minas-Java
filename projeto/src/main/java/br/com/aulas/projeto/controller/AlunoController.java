@@ -2,7 +2,6 @@ package br.com.aulas.projeto.controller;
 
 import br.com.aulas.projeto.model.Aluno;
 import br.com.aulas.projeto.service.AlunoService;
-import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +24,7 @@ public class AlunoController {
     // Tratar esse objeto json para atributos nulos, caso tenham atributos nulos retornar o erro adequado
     // Caso tudo esteja ok, retornem um status de CRIADO
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity insert(@RequestBody @Valid Aluno aluno) {
+    public ResponseEntity insert(@RequestBody Aluno aluno) {
         return alunoService.insert(aluno);
     }
 

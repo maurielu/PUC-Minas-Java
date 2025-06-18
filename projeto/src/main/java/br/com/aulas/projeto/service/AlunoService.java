@@ -2,6 +2,7 @@ package br.com.aulas.projeto.service;
 
 import br.com.aulas.projeto.model.Aluno;
 import br.com.aulas.projeto.repository.AlunoRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class AlunoService {
     }
 
     @Transactional
-    public ResponseEntity insert(Aluno aluno) {
+    public ResponseEntity insert(@Valid Aluno aluno) {
         alunoRepository.save(aluno);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
