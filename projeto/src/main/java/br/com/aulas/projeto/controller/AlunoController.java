@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/aluno", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AlunoController {
@@ -30,6 +32,10 @@ public class AlunoController {
 
     // GET retornar uma Lista de Objetos da Classe Aluno (id, nome) 2 ou mais registros
     // retornar OK
+    @PostMapping(path = "/list", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<Aluno> getList() {
+        return alunoService.getList();
+    }
 
     // PATH as mesmas validações do POST
     // retornar OK
